@@ -4,6 +4,11 @@
 - Name the script "Main" or any other name, and **then paste main.luau's contents inside of it**.
 - Insert a ModuleScript as the child of the ServerScript and **then paste trainopservice.luau's contents inside of it**.
 - Name the module script "TrainOperationService" (necessary or doesn't work)
+### Quick Setup
+You can also use the Quick Setup.
+- Copy "quicksetup.luau" to your clipboard.
+- Paste it into the command bar in Studio (https://create.roblox.com/docs/studio/ui-overview#command-bar)
+- Press enter, and check ServerScriptService for "Main"
 ### Requirements
 - Train MUST BE a Model
 - Train MUST HAVE tag "Train"
@@ -17,4 +22,4 @@
 ### Optional
 none yet
 ### If you find any errors,
-Announce me as soon as possible so I can deal with them.
+Announce Petrulici as soon as possible so I can deal with them.
