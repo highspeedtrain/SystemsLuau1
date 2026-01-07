@@ -61,3 +61,4 @@ end
 
 return TrainService
 
+-- PLACE INSIDE OF MAIN SCRIPT
