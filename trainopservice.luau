@@ -3,14 +3,7 @@ local TrainService = {}
 local TweenService = game:GetService("TweenService")
 
 function TrainService.StartOperations()
-	local trainsFolder = workspace:FindFirstChild("Trains")
-
-	if not trainsFolder or not trainsFolder:IsA("Folder") then
-		warn("Workspace.Trains folder not found")
-		return
-	end
-
-	for _, train in ipairs(trainsFolder:GetChildren()) do
+	for _, train in ipairs(workspace:GetDescendants()) do
 		if train:IsA("Model") and train:HasTag("Train") then
 			TrainService.Operations(train)
 		else
@@ -35,23 +28,25 @@ function TrainService.Operations(Train : Model)
 	end
 
 	local tweens = {}
+	local maxSpeed = Train:GetAttribute("Speed")
+	local reverseSpeed = Train:GetAttribute("ReverseSpeed") or maxSpeed / 2
 
 	seat:GetPropertyChangedSignal("Throttle"):Connect(function()
 		local targetVelocity = 0
 		for _, wheel : HingeConstraint in ipairs(wheels) do
 			if wheel.Name == "WheelL" then
 				if seat.Throttle == 1 then
-					targetVelocity = 20
+					targetVelocity = maxSpeed
 				elseif seat.Throttle == -1 then
-					targetVelocity = -10
+					targetVelocity = -reverseSpeed
 				else
 					targetVelocity = 0
 				end
 			elseif wheel.Name == "WheelR" then
 				if seat.Throttle == 1 then
-					targetVelocity = -20
+					targetVelocity = -maxSpeed
 				elseif seat.Throttle == -1 then
-					targetVelocity = 10
+					targetVelocity = reverseSpeed
 				else
 					targetVelocity = 0
 				end	

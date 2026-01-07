@@ -1,15 +1,15 @@
 local TrainOperationService = require(script:FindFirstChild("TrainOperationService"))
-local workspace1 = game:GetService("Workspace")
-local trains = workspace1.Trains:GetChildren()
+local trains = workspace:GetDescendants()
 
 for _, train : Model in ipairs(trains) do
-	local seat = train:FindFirstChildOfClass("VehicleSeat")
-	if not seat then 
-		return 
+	if train:IsA("Model") and train:HasTag("Train") then
+		local seat = train:FindFirstChildOfClass("VehicleSeat")
+		if not seat then 
+			return 
+		end
+		seat:GetPropertyChangedSignal("Throttle"):Connect(TrainOperationService.StartOperations)
+	else
+		warn(`{train.Name} is not a Model or doesn't have "Train" tag!`)
 	end
-	seat:GetPropertyChangedSignal("Throttle"):Connect(TrainOperationService.StartOperations)
 end
 TrainOperationService.StartOperations()
-
--- PLACE IN SERVERSCRIPTSERVICE
--- AFTER, CREATE A FOLDER IN WORKSPACE NAMED "Trains" AND PUT THE CLASS 03 IN IT
