@@ -4,6 +4,7 @@
 - Name the script "Main" or any other name, and **then paste main.luau's contents inside of it**.
 - Insert a ModuleScript as the child of the ServerScript and **then paste trainopservice.luau's contents inside of it**.
 - Name the module script "TrainOperationService" (necessary or doesn't work)
+- Insert your trains inside of Workspace and give them the tag of "Train" and create 2 attributes, "Speed" and "ReverseSpeed", adjust them accordingly. (The 2 attributes must be number type, as you are changing the AngularVelocity property, which is a number.)
 ### Requirements
 - Train MUST BE a Model
 - Train MUST HAVE tag "Train"
